@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href="css/master.css" rel="stylesheet" type="text/css">
+    <link href="css/maintenance.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <span id="countElements">00</span> items are on the list in <span id="countCategories">00</span> categories<br>
+            <span id="countShopList">00</span> items are on the shopping list</span>
+            <menu>
+                <menu-item class=menu-item id="m-item-0">Options</menu-item>
+                <menu-item class=menu-item id="m-item-1">Go to Shopping List</menu-item>
+                <menu-item class=menu-item id="m-item-2">Expand All</menu-item>
+            </menu>
+        </header>
+        <form id=form>
+            <input name=item-name id=item-name label="Name of the item" placeholder="The name of the product">
+            <input name=item-cat id=item-cat label="Shopping category" placeholder="The location of the product in the store">
+            <br>
+            Planned quantity: <input class=plan-qty name=plan-qty id=plan-qty label="The quantity you intend to purchase" placeholder=1>
+            Planned price: <input class=plan-price name=plan-price id=plan-price label="The expected price of the item" placeholder=1.00>
+            <br>
+            <input name=item-desc id=item-desc label="A description of the product" placeholder="A more detailed description of the product">
+            <br>
+            <button>SAVE</button>
+            <button>RESET</button>
+            <button>CANCEL</button>
+            <input name=hide-name hidden>
+            <input name=hide-cat hidden>
+            <input name=hide-qty hidden>
+            <input name=hide-price hidden>
+            <input name=hide-desc hidden>
+            <input name=hide-uID hidden>
+        </form>
+        <button>NEW</button>
+        <main id="main">MAIN</main>
+        <div class="push">PUSH</div>
+    </div>
+    <footer>Shopping List: Product Maintenance (All Rights Reserved)</footer>
+<body>
+
+</body>
+
+<script language="JavaScript" src="javascript/menu.js"></script>
+<script language="JavaScript" src="javascript/maintenance.js"></script>
+</html>
