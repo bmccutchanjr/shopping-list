@@ -22,14 +22,16 @@
 body
 {   color: var(--fg-color);
     font-family: sans-serif;
-    font-size: 1vw;
+    /* font-size: 1vw; */
+    font-size: 12px;
     font-weight: normal;
     margin: 0px;
     padding: 0px;
 }
 
 header
-{   background: rgba(255,0,0,0.5);
+{   
+    /* background: rgba(255,0,0,0.5); */
     margin: 0px;
     margin-bottom: 25px;
     padding: 10px;
@@ -38,7 +40,8 @@ header
 }
 
 menu
-{   background: rgba(0,255,255,0.5);
+{   
+    /* background: rgba(0,255,255,0.5); */
     padding: 2px;
     position: absolute;
     right: 0px;
@@ -47,7 +50,8 @@ menu
 }
 
 .menu-item
-{   background: rgba(255,0,255,0.5);
+{   
+    /* background: rgba(255,0,255,0.5); */
     border: 1px solid black;
     display: block;
     margin: 2px;
@@ -75,7 +79,8 @@ button:hover
 }
 
 main
-{   background: rgba(0,255,0,0.5);
+{   
+    /* background: rgba(0,255,0,0.5); */
     text-align: center;
 }
 
@@ -86,8 +91,54 @@ section
 }
 
 section .heading
-{   background: var(--bg-footer);
+{   
+    /* background: var(--bg-footer); */
     font-weight: bold;
+    width: 100%;
+}
+
+/*                                          */
+/*  CSS style for the <form>                */
+/*                                          */
+
+form
+{   background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-div
+{   
+    background: rgba(255,0,0,0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: 25%;
+    max-width: 200px;
+}
+
+.prod-name, .prod-loc
+{   
+    width: 40%;
+    min-width: 250px;
+}
+
+.plan-qty
+{   display: inline-block;
+    text-align: right;
+    width: 35px;
+}
+
+.plan-price
+{   display: inline-block;
+    text-align: right;
+    width: 60px;
+}
+
+.prod-desc
+{
     width: 100%;
 }
 
@@ -115,7 +166,8 @@ body, html
 }
 
 .wrapper
-{   background: rgba(0,0,255,0.5);
+{   
+    /* background: rgba(0,0,255,0.5); */
     margin: 0px auto;
     margin-bottom: -50px;
     min-height: 100%;
@@ -123,7 +175,8 @@ body, html
 }
 
 .push
-{   background: rgba(255,255,0,0.5);
+{   
+    /* background: rgba(255,255,0,0.5); */
     height: 50px;
     margin: 0px;
     text-align: center;

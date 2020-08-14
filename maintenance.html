@@ -21,14 +21,24 @@
             </menu>
         </header>
         <form id=form>
-            <input name=item-name id=item-name label="Name of the item" placeholder="The name of the product">
-            <input name=item-cat id=item-cat label="Shopping category" placeholder="The location of the product in the store">
+            <input class=prod-name name=prod-name id=prod-name label="Name of the item" placeholder="The name of the product">
             <br>
-            Planned quantity: <input class=plan-qty name=plan-qty id=plan-qty label="The quantity you intend to purchase" placeholder=1>
-            Planned price: <input class=plan-price name=plan-price id=plan-price label="The expected price of the item" placeholder=1.00>
             <br>
-            <input name=item-desc id=item-desc label="A description of the product" placeholder="A more detailed description of the product">
+            <input class=prod-loc name=prod-loc id=prod-loc label="Shopping category" placeholder="Where the product in located in the store">
             <br>
+            <br>
+            <div class=form-div>
+                Planned quantity: <input class=plan-qty name=plan-qty id=plan-qty label="The quantity you intend to purchase" placeholder=1>
+            </div>
+            <br>
+            <div class=form-div>
+                Planned price: <input class=plan-price name=plan-price id=plan-price label="The expected price of the item" placeholder=1.00>
+            </div>
+            <br>
+            <input class=prod-desc name=prod-desc id=prod-desc label="A description of the product" placeholder="A more detailed description of the product">
+            <br>
+            <br>
+            <button>NEW</button>
             <button>SAVE</button>
             <button>RESET</button>
             <button>CANCEL</button>
@@ -39,7 +49,6 @@
             <input name=hide-desc hidden>
             <input name=hide-uID hidden>
         </form>
-        <button>NEW</button>
         <main id="main">MAIN</main>
         <div class="push">PUSH</div>
     </div>
