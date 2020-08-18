@@ -28,7 +28,7 @@ let databaseReady = false;
 let databaseError = false;
 let documentReady = false;
 
-const request = indexedDB.open ("shopping.list", 1);
+const request = indexedDB.open ("shopping", 1);
 request.onerror = event =>
 {   console.log (event.target.result);
     document.getElementById ("main").innerText = event.target.result;
@@ -53,7 +53,7 @@ request.onupgradeneeded = event =>
 
     let db = event.target.result;
 
-    let dataStore = db.createObjectStore ("location", { keyPath: "uniqueID", autogenerate: true });
+    let dataStore = db.createObjectStore ("products", { keyPath: "uniqueID", autoIncrement: true });
 //  I will need to update data in the database and for that I have to know the ket path.  There is
 //  nothing in the data that is unique, unless I want to artificially constrain the product name (and
 //  I think I don't want to).  That means I need to know the value of the keyPath and I think that
@@ -66,7 +66,7 @@ request.onupgradeneeded = event =>
 //      dataStore.createIndex ("uniqueID", "uniqueID", { autoincrement: true, unique: true } );
 //  shouldn't need an index over the keyPath...
 
-    dataStore.createIndex ("maintenance", "location.product", { unique: false } );
+    dataStore.createIndex ("all-items", "location.product", { unique: false } );
 //  By the way, that syntax is almost certainly not correct...
 //
 //  Do I really need to sort by location, priority and product for shopping.html.  Isn't it
@@ -111,7 +111,35 @@ request.onsuccess = event =>
 //  to use the same name and parameters to call different scripts at runtime.
 //
     databaseReady = true;
-    if (documentReady) initpage (cursor);
+    if (documentReady)
+    {   
+        let transaction = db.transaction ("products");
+        transaction.oncomplete = event =>
+        {
+            console.log ("transaction completed");
+        }
+
+        transaction.onerror = event =>
+        {
+            //  the error is handled
+        }
+
+        // let objectStore = transaction.objectStore ("products");
+        let objectStore = transaction.objectStore ("products");
+
+        objectStore.openCursor().onsuccess = (event =>
+        {   let cursor = event.target.result;
+            if (cursor)
+            {   console.log (cursor.value)
+                cursor.continue();
+            }
+            else
+                console.log ("There is nothing in the database.  Why not add some?");
+
+        })
+        
+        // initpage ();
+    }
 }
 
 window.addEventListener ("load", event =>
