@@ -1,6 +1,6 @@
 //  These functions are used on more than one page in the application.
 
-function configureElement (elementType, object, parent)
+function configureElement (elementType, object, parent = undefined)
 {   //  A generic function to configure HTML elements in the DOM.  There are half a dozen HTML
     //  elements on each line of the list and each needs to be configured and elements need to
     //  be added to the screen when the page is first loaded and when a new item is added to the

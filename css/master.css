@@ -90,8 +90,9 @@ section
 
 section .heading
 {   
-    /* background: var(--bg-footer); */
+    background: var(--bg-footer);
     font-weight: bold;
+    text-align: left;
     width: 100%;
 }
 
@@ -150,7 +151,7 @@ form
     width: 100%;
 }
 
-.product.odd
+.product.even
 {   background: var(--bg-alternate);
 }
 
