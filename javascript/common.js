@@ -40,6 +40,10 @@ function configureElement (elementType, object, parent = undefined)
     return element;
 }
 
+function formatDollars (number)
+{   return (number / 100).toFixed (2)
+}
+
 function errorMessage (message)
 {   //  Use configureElement() to place the message on the screen.
     configureElement ("div",

@@ -38,7 +38,7 @@ request.onsuccess = event =>
 
                 configureElement ("div",
                     {   "class": "heading",
-                        "innerText": cursor.value.location.toUpperCase(),
+                        "innerText": cursor.value.location.toUpperCase() + " ▼",
                         "onclick": "console.log ('heading clicked');"
                     },
                     section);

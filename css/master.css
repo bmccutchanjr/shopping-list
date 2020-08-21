@@ -79,65 +79,26 @@ button:hover
 main
 {   
     /* background: rgba(0,255,0,0.5); */
-    text-align: center;
+    /* text-align: center; */
 }
 
 section
-{   border: 1px solid black;
-    border-radius: 3px;
+{   
+    /* border: 1px solid black; */
+    /* border-radius: 3px; */
+    margin-bottom: 10px;
     width: 100%;
 }
 
 section .heading
-{   
-    background: var(--bg-footer);
-    font-weight: bold;
-    text-align: left;
-    width: 100%;
-}
-
-/*                                          */
-/*  CSS style for the <form>                */
-/*                                          */
-
-form
-{   background: white;
+{   background: var(--bg-footer);
     border: 1px solid black;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.form-div
-{   
-    /* background: rgba(255,0,0,0.5); */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-    width: 25%;
-    max-width: 200px;
-}
-
-.prod-name, .prod-loc
-{   
-    width: 40%;
-    min-width: 250px;
-}
-
-.plan-qty
-{   display: inline-block;
-    text-align: right;
-    width: 35px;
-}
-
-.plan-price
-{   display: inline-block;
-    text-align: right;
-    width: 60px;
-}
-
-.prod-desc
-{
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
     width: 100%;
 }
 
@@ -148,11 +109,43 @@ form
 .product
 {   display: flex;
     flex-direction: row;
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
     width: 100%;
 }
 
 .product.even
 {   background: var(--bg-alternate);
+}
+
+.field.name
+{   flex-shrink: 0;
+
+}
+
+.field.name
+{   flex-grow: 1;
+    flex-shrink: 1;
+
+}
+
+.field.label
+{   margin-left: 20px;
+}
+
+.input.quantity
+{   display: inline-block;
+    text-align: right;
+    margin-left: 3px;
+    width: 35px;
+}
+
+.input.price
+{   display: inline-block;
+    text-align: right;
+    margin-left: 3px;
+    width: 60px;
 }
 
 /*                                          */

@@ -9,7 +9,7 @@ function makeProductDiv (section, data, even)
         },
         section);
 
-    let classlist = "field pending";
+    let classlist = "field name pending";
     if (data.status == "in the cart") classlist.replace ("pending", "in-cart:");
     if (data.status == "on the list") classlist.replace ("pending", "on-list:");
 
@@ -17,11 +17,6 @@ function makeProductDiv (section, data, even)
         {   "class": classlist,
             "id": "pr-" + data.uniqueID,
             "innerText": data.product
-//  004         })
-//  004
-//  004     configureElement ("div",
-//  004         {   "class": "field name",
-//  004            "innerText": data.product
         },
         parentDiv);
 
@@ -33,7 +28,7 @@ function makeProductDiv (section, data, even)
 
     configureElement ("input",
         {   "class": "input quantity",
-            "innerText": "quantity:",
+            // "innerText": "quantity:",
             "placeholder": "1",
             "readonly": true,
             "value": data.plan.quantity
@@ -48,10 +43,10 @@ function makeProductDiv (section, data, even)
 
     configureElement ("input",
         {   "class": "input price",
-            "innerText": "price:",
+            // "innerText": "price:",
             "placeholder": "1.00",
             "readonly": true,
-            "value": data.plan.price
+            "value": formatDollars (data.plan.cost)
         },
         parentDiv);
 

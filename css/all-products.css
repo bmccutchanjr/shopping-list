@@ -1,0 +1,47 @@
+/*                                                                                       */
+/*  This is only applicable to all-products.html                                         */
+/*                                                                                       */
+
+/*  CSS style for the <form>                */
+
+form
+{   background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: none;
+    padding: 10px;
+}
+
+.form-div
+{   
+    /* background: rgba(255,0,0,0.5); */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: 25%;
+    max-width: 200px;
+}
+
+.prod-name, .prod-loc
+{   
+    width: 40%;
+    min-width: 250px;
+}
+
+.plan-qty
+{   display: inline-block;
+    text-align: right;
+    width: 35px;
+}
+
+.plan-price
+{   display: inline-block;
+    text-align: right;
+    width: 60px;
+}
+
+.prod-desc
+{
+    width: 100%;
+}
