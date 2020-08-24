@@ -28,7 +28,6 @@ function makeProductDiv (section, data, even)
 
     configureElement ("input",
         {   "class": "input quantity",
-            // "innerText": "quantity:",
             "placeholder": "1",
             "readonly": true,
             "value": data.plan.quantity
@@ -43,7 +42,6 @@ function makeProductDiv (section, data, even)
 
     configureElement ("input",
         {   "class": "input price",
-            // "innerText": "price:",
             "placeholder": "1.00",
             "readonly": true,
             "value": formatDollars (data.plan.cost)
@@ -56,9 +54,11 @@ function makeProductDiv (section, data, even)
         },
         parentDiv);
 
-    configureElement ("button",
+    configureElement ("a",
         {   "class": "prod-button delete",
-            "innerText": "DEL"
+            "href": "#",
+            "innerText": "X",
+            "onclick": "confirmDelete (this)"
         },
         parentDiv);
 }
