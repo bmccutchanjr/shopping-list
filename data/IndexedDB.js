@@ -20,7 +20,6 @@ request.onsuccess = event =>
     let section = undefined;
 
     const main = document.getElementById ("main");
-//  Various messages may be displayed in in <main>.  Now would be the time to clear them...
 
     index.openCursor().onsuccess = (event =>
     {   let cursor = event.target.result;
