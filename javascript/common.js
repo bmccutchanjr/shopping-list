@@ -115,3 +115,40 @@ function noData ()
 //  004         },
 //  004         document.getElementById ("main"));
 //  004 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+//  Collects the functions used expand/collapse the location <section>.
+
+function expandSection (event)
+{   //  The event handler for <section> onclick events
+
+    let header = event.target;
+
+    //  The event is actually triggered on a child of the <section>, so event.target does not
+    //  reference the <section> element that I want.  That element is the parent of the event
+    //  target...
+
+    let section = header.parentNode;
+    let expanded = section.getAttribute ("expanded") == "true";
+
+    let products = section.getElementsByClassName ("product");
+    const length = products.length;
+    for (let x=0; x<length; x++)
+    {   //  Set the CSS display property of each child of the <section>
+
+        products[x].style.display = expanded ? "none" : "flex";
+    }
+
+    if (expanded)
+    {   //  If the <section> was expanded when this event was triggered, it is now collapsed
+
+        section.setAttribute ("expanded", "false");
+        header.innerText = header.innerText.replace ("▲", "▼")
+    }
+    else
+    {   section.setAttribute ("expanded", "true");
+        header.innerText = header.innerText.replace ("▼", "▲")
+    }
+}

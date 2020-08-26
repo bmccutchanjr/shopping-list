@@ -48,13 +48,15 @@ function getDbReference ()
                 {   lastlocation = cursor.value.location
                     locationcount = 0;
 
-                    section = document.createElement ("section");
-                    main.append (section);
+                    section = configureElement ("section",
+                        {   "expanded": "false",
+                        },
+                        main);
 
                     configureElement ("div",
                         {   "class": "heading",
                             "innerText": cursor.value.location.toUpperCase() + " ▼",
-                            "onclick": "console.log ('heading clicked');"
+                            "onclick": "expandSection (event);"
                         },
                         section);
                 }
