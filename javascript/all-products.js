@@ -96,12 +96,42 @@ function confirmDelete (element)
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
+//  Collect the functions used to auto-hide the <form> after 1 minute of inactivity
+
+let formTimeout = true;
+
+function focusHandler (event)
+{   //  Event handler for <input> elements in <form>.
+
+    formTimeout = false;
+    let input = event.target;
+    input.select ();
+}
+
+function formAutoHide ()
+{
+    setTimeout (() =>
+    {
+        if (formTimeout)
+            formCancel ();
+        else
+        {   formTimeout = true;
+            formAutoHide ();
+        }
+    },
+    60000)
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
 //  Collect the functions used to display and interact with the <form>
 
 function formCancel (event)
 {   //  The event handler for the <form> cancel option
 
-    event.preventDefault();
+    if (event)
+        event.preventDefault();
 
     form.style.display = "none";
 
@@ -126,8 +156,15 @@ function formCancel (event)
 }
 
 function formDisplay ()
-{   form.style.display = "block";
+{   
+//  03  form.style.display = "block";
+//  03  form.style.top = window.pageYOffset + 50 + "px";
     form.style.top = window.pageYOffset + 50 + "px";
+    form.style.display = "block";
+
+    form["prod-name"].focus();
+
+    formAutoHide ();
 }
 
 function formReset ()
@@ -140,6 +177,8 @@ function formReset ()
     form["plan-qty"].value = form["hide-qty"].value;
     form["plan-price"].value = form["hide-price"].value;
     form["prod-desc"].value = form["hide-desc"].value;
+
+    formTimeout = false;
 }
 
 function formSave (event)
