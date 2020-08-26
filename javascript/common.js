@@ -119,46 +119,11 @@ function noData ()
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-//  Collects the functions used expand/collapse the location <section>.
+//  Collects the functions used to expand/collapse the location <section>.
 
-//  06  function expandSection (event)
-//  06  {   //  The event handler for <section> onclick events
-//  06  
-//  06      let header = event.target;
-//  06  
-//  06      //  The event is actually triggered on a child of the <section>, so event.target does not
-//  06      //  reference the <section> element that I want.  That element is the parent of the event
-//  06      //  target...
-//  06  
-//  06      let section = header.parentNode;
-//  06      let expanded = section.getAttribute ("expanded") == "true";
-//  06  
-//  06      let products = section.getElementsByClassName ("product");
-//  06      const length = products.length;
-//  06      for (let x=0; x<length; x++)
-//  06      {   //  Set the CSS display property of each child of the <section>
-//  06  
-//  06          products[x].style.display = expanded ? "none" : "flex";
-//  06      }
-//  06  
-//  06      if (expanded)
-//  06      {   //  If the <section> was expanded when this event was triggered, it is now collapsed
-//  06  
-//  06          section.setAttribute ("expanded", "false");
-//  06          header.innerText = header.innerText.replace ("▲", "▼")
-//  06      }
-//  06      else
-//  06      {   section.setAttribute ("expanded", "true");
-//  06          header.innerText = header.innerText.replace ("▼", "▲")
-//  06      }
-//  06  }
-//  06  begins
 function expandIt (section, header, expanded)
 {   //  The does the actual work of expanding/collapsing one <section> element.  This function is
     //  called from expandAll() and expandSection().
-
-//  07      if (expanded == undefined)
-//  07          expanded = section.getAttribute ("expanded") == "true";
 
     let products = section.getElementsByClassName ("product");
     const length = products.length;
@@ -191,14 +156,18 @@ function expandAll (event)
     let length = sections.length;
     for (let x=0; x<length; x++)
     {
-        let children = section.getElementsByClassName ("header");
+        let children = sections[x].getElementsByClassName ("heading");
         expandIt (sections[x], children[0], expanded);
     }
 
     if (expanded)
+    {   option.innerText = "Expand All";
         option.setAttribute ("expanded", "false");
+    }
     else
+    {   option.innerText = "Collapse All";
         option.setAttribute ("expanded", "true");
+    }
 }
 
 function expandSection (event)
@@ -214,4 +183,3 @@ function expandSection (event)
     let expanded = section.getAttribute ("expanded") == "true";
     expandIt (section, header, expanded);
 }
-//  06  ends
