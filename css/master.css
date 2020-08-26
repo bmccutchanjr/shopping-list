@@ -89,9 +89,10 @@ button:hover
     height: auto;
     min-height: 100px;
     padding: 0px;
-    position: fixed;
+    /* position: fixed; */
+    position: absolute;
     left: 10vw;
-    top: 50px;
+    /* top: 50px; */
     width: 80vw;
 }
 

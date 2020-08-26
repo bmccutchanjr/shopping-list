@@ -39,12 +39,17 @@
             <input class=prod-desc name=prod-desc id=prod-desc label="A description of the product" placeholder="A more detailed description of the product">
             <br>
             <br>
-            <button>NEW</button>
-            <button>SAVE</button>
-            <button>RESET</button>
-            <button>CANCEL</button>
+            <a href="#"
+               class="modal-option"
+               onclick="formSave (event);">SAVE</a>
+            <a href="#"
+               class="modal-option"
+               onclick="formReset (event)">RESET</a>
+            <a href="#"
+               class="modal-option"
+               onclick="formCancel (event)">CANCEL</a>
             <input name=hide-name hidden>
-            <input name=hide-cat hidden>
+            <input name=hide-loc hidden>
             <input name=hide-qty hidden>
             <input name=hide-price hidden>
             <input name=hide-desc hidden>

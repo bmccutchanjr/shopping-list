@@ -10,6 +10,10 @@ form
     border-radius: 5px;
     display: none;
     padding: 10px;
+    position: absolute;
+    left: 10vw;
+    width: 80vw;
+    z-index: 99999;
 }
 
 .form-div
