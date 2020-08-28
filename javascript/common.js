@@ -22,7 +22,11 @@ function configureElement (elementType, object, parent = undefined)
     let keys = Object.entries (object);
     keys.forEach (attribute =>
     {   switch (attribute[0])
-        {   case "innerText":
+        {   case "display":
+            {   element.style.display = attribute[1];
+                break;
+            }
+            case "innerText":
             {   element.innerText = attribute[1];
                 break;
             }
@@ -53,13 +57,16 @@ function formatDollars (number)
 {   return (number / 100).toFixed (2)
 }
 
-function hideMessage ()
+function hideMessage (event)
 {   //  A utility that "hides" the modal window used to display messages.  This function is called
     //  by several processes and functions throughout the application.
     // 
     //  Note that 'hide' is a euphamism for 'remove'.  The modal <div> will be removed from the DOM,
-    //  which not only gets it off the screen but also removes any content (including child nodes)
-    //  that might be in it.
+    //  which not only gets it off the screen but also removes any content (including child nodes and
+    //  event listeners) that might be in it.
+
+    if (event)
+        event.preventDefault ();
 
     document.body.removeChild (document.getElementById ("modal"));
 

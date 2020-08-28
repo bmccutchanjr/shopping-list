@@ -2,7 +2,30 @@
 /*  This is only applicable to all-products.html                                         */
 /*                                                                                       */
 
-/*  CSS style for the <form>                */
+.add-option
+{
+    background: darkgreen;
+    border: 2px solid black;
+    border-radius: 50%;
+    color:  white;
+    display: inline-block;
+    padding: 5px;
+    padding-left: 10px;
+    text-decoration: none;
+    width: 30px;
+}
+
+.add-option:visited
+{
+    color: white;
+}
+
+.add-option:hover
+{
+    background: lightgreen;
+}
+
+/*  Style for the <form>                    */
 
 form
 {   background: white;

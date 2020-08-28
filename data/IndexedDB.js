@@ -40,13 +40,14 @@ function getDbReference ()
         index.openCursor().onsuccess = (event =>
         {   let cursor = event.target.result;
 
-            if (cursor)
+            if (!cursor)
+                summaryStats ();
+            else
             {
-                ++count;
-
                 if (cursor.value.location != lastlocation)
                 {   lastlocation = cursor.value.location
                     locationcount = 0;
+                    ++countLocations
 
                     section = configureElement ("section",
                         {   "expanded": "false",
@@ -61,6 +62,7 @@ function getDbReference ()
                         section);
                 }
 
+                ++countProducts;
                 buildPage (section, cursor, ((++locationcount % 2) == 0));
                 cursor.continue ();
             }

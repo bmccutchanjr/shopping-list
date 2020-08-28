@@ -28,27 +28,42 @@ body
 
 header
 {   margin: 0px;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
+    margin-bottom: 10px;
     padding: 10px;
     position: relative;
     width: 100%;
 }
 
 menu
-{   padding: 2px;
+{   background: pink;
+    border: 2px solid black;
+    padding: 2px;
     position: absolute;
     right: 0px;
-    top: -14px;
-    width: 10vw;
+    text-align: right;
+    top: 0px;
+    width: 150px;
 }
 
-.menu-item
+.option
 {   border: 1px solid black;
-    display: block;
-    margin: 2px;
-    padding: 4px;
+    color: navy;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    margin: 1px;
+    padding: 2px;
     text-align: right;
-    width: 100%;
+    text-decoration: none;
+}
+
+.option:hover
+{   color: red;
+}
+
+.option:active
+{   color: white;
 }
 
 button
@@ -103,22 +118,10 @@ button:hover
 }
 
 .modal-option
-{   color: navy;
+{   border: none;
     display: inline-block;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: bold;
     margin: 0px;
     margin-left: 20px;
-    text-decoration: none;
-}
-
-.modal-option:hover
-{   color: red;
-}
-
-.modal-option:active
-{   color: white;
 }
 
 /*                                          */
@@ -160,14 +163,14 @@ section .heading
 }
 
 .field.name
-{   flex-shrink: 0;
-
-}
-
-.field.name
 {   flex-grow: 1;
     flex-shrink: 1;
+    font-weight: bold;
+    text-decoration: line-through;
+}
 
+.field.name.on-list
+{   text-decoration: none;
 }
 
 .field.label
@@ -199,23 +202,19 @@ section .heading
 }
 
 .prod-button.delete
-{   color: red;
+{   color: darkred;
     display: inline-block;
-    text-shadow: 0px 2px 0px black;
     font-weight: bold;
     margin-left: 20px;
     text-decoration: none;
 }
 
 .prod-button.delete:hover
-{   color: pink;
+{   color: red;
 }
 
 .prod-button.delete:active
 {   color: white;
-    position: relative;
-    top: +2px;
-    text-shadow: none;
 }
 
 /*                                          */

@@ -13,16 +13,10 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <span id="countElements">00</span> items are on the list in <span id="countCategories">00</span> categories<br>
-            <span id="countShopList">00</span> items are on the shopping list</span>
-            <menu>
-                <menu-item class=menu-item id="m-item-0">▼ Options</menu-item>
-                <menu-item class=menu-item id="m-item-1">Go to Shopping List</menu-item>
-                <menu-item class=modal-option
-                           expanded = false
-                           id="m-item-2"
-                           onclick="expandAll(event);">Expand All</menu-item>
-            </menu>
+            <!-- <span id="countElements">00</span> items are on the list in <span id="countCategories">00</span> categories<br>
+            <span id="countShopList">00</span> items are on the shopping list</span> -->
+            <span class="add-option">+</span>
+            <menu id=menu></menu>
         </header>
         <form id=form>
             <input class=prod-name
@@ -68,13 +62,13 @@
             <br>
             <br>
             <a href="#"
-               class="modal-option"
+               class="option modal-option"
                onclick="formSave (event);">SAVE</a>
             <a href="#"
-               class="modal-option"
+               class="option modal-option"
                onclick="formReset (event)">RESET</a>
             <a href="#"
-               class="modal-option"
+               class="option modal-option"
                onclick="formCancel (event)">CANCEL</a>
             <input name=hide-name hidden>
             <input name=hide-loc hidden>

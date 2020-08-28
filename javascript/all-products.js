@@ -1,3 +1,7 @@
+let countLocations = 0;
+let countProducts = 0;
+let countOnList = 0;
+
 //  There are several (perhaps hundreds of) product <div> on the page, and each has an "edit" and
 //  a "delete" option.  Although a user probably wouldn't, theoretically several (even all of them)
 //  could be clicked.
@@ -77,7 +81,7 @@ function confirmDelete (element)
         modal);
 
     configureElement ("a",
-        {   "class": "modal-option",
+        {   "class": "option modal-option",
             "href": "#",
             "onclick": "event.preventDefault();deleteProduct (" + uniqueID + ")",
             "innerText": "DELETE"
@@ -85,7 +89,7 @@ function confirmDelete (element)
         bdiv);
 
     configureElement ("a",
-        {   "class": "modal-option",
+        {   "class": "option modal-option",
             "href": "#",
             "onclick": "event.preventDefault();hideMessage ()",
             "innerText": "CANCEL"
@@ -272,8 +276,10 @@ function makeProductDiv (section, data, even)
         section);
 
     let classlist = "field name pending";
-    if (data.status == "in the cart") classlist.replace ("pending", "in-cart:");
-    if (data.status == "on the list") classlist.replace ("pending", "on-list:");
+    if ((data.status == "in the cart") || (data.status == "on the list"))
+    {   classlist = classlist.replace ("pending", "on-list");
+        ++countOnList;
+    }
 
     configureElement ("div",
         {   "class": classlist,
@@ -311,7 +317,7 @@ function makeProductDiv (section, data, even)
         parentDiv);
 
     configureElement ("a",
-        {   "class": "modal-option",
+        {   "class": "option modal-option",
             "href": "#",
             "innerText": "EDIT",
             "onclick": "event.preventDefault();changeProduct (" + data.uniqueID + ")"
@@ -331,4 +337,39 @@ function buildPage (section, cursor, even)
 {   //  Page specific code to build the page.
 
         makeProductDiv (section, cursor.value, even);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+function summaryStats ()
+{   //  Display summary data from page load; how many products were found, how many are already
+    //  on the shopping list, how many locations were found.
+
+    const modal = configureElement ("div",
+        {   "class": "modal",
+            "id": "modal",
+            "top": window.pageYOffset + 50 + "px",
+        },
+        document.body);
+
+    const tdiv = configureElement ("div",
+        {   "class": "modal-text",
+            "innerHTML": countProducts + " products were found in " + countLocations + " locations.<br><br>"
+                       + countOnList + " items are on the shopping list.  Total cost: $0.00"
+        },
+        modal);
+    
+    const bdiv = configureElement ("div",
+        {   "class": "modal-buttons"
+        },
+        modal);
+
+    configureElement ("a",
+        {   "class": "option modal-option",
+            "href": "#",
+            "onclick": "hideMessage (event);",
+            "innerText": "OK",
+        },
+        bdiv);
 }
