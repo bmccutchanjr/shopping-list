@@ -163,13 +163,22 @@ section .heading
 }
 
 .field.name
-{   flex-grow: 1;
+{   color: black;
+    flex-grow: 1;
     flex-shrink: 1;
     font-weight: bold;
     text-decoration: line-through;
 }
 
-.field.name.on-list
+.field.name:visited
+{   color: black;
+}
+
+.field.name:hover
+{   color: red;
+}
+
+.field.name.needed
 {   text-decoration: none;
 }
 

@@ -261,6 +261,46 @@ function changeProduct (uniqueID)
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
+function toggleListStatus (event)
+{   //  Toggle the shopping list status (on the shopping list or not) of the selected product.
+
+    event.preventDefault ();
+
+    let product = event.target;
+    let needed = product.getAttribute ("status") == "needed";
+    let uniqueId = product.getAttribute ("uniqueId");
+
+    //  'needed' represents the status of the product when the element was clicked.  If the
+    //  current status is 'needed' we want to change it to 'pending'.
+
+    const objectStore = db.transaction (["all-products"], "readwrite")
+                          .objectStore ("all-products")
+    const r1 = objectStore.get (Number (uniqueId));
+    r1.onsuccess = event =>
+    {   let data = event.target.result;
+
+        data.status = needed ? "pending" : "on the list";
+
+        const r2 = objectStore.put (data);
+        r2.onsuccess = event =>
+        {   
+            if (needed)
+            {
+                product.setAttribute ("class", product.getAttribute ("class").replace ("needed", "pending"));
+                product.setAttribute ("status", "pending");
+            }
+            else
+            {
+                product.setAttribute ("class", product.getAttribute ("class").replace ("pending", "needed"));
+                product.setAttribute ("status", "needed");
+            }
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
 //  Collects the functions used to create and populate <div> elements for each product in the
 //  database.  These functions are only called when the page is first loaded (or refreshed).
 
@@ -271,20 +311,36 @@ function makeProductDiv (section, data, even)
     const parentDiv = configureElement ("div", 
         {   "class": "product " + (even ? "even" : "odd"),
             "id": "id-" + data.uniqueID,
-            "uniqueID": data.uniqueID
+            "uniqueId": data.uniqueID
         },
         section);
 
     let classlist = "field name pending";
+//  13  begins
+        status = "not needed";
+//  13  ends
     if ((data.status == "in the cart") || (data.status == "on the list"))
-    {   classlist = classlist.replace ("pending", "on-list");
+    {   classlist = classlist.replace ("pending", "needed");
         ++countOnList;
+//  13  begins
+        status = "needed";
+//  13  ends
     }
 
-    configureElement ("div",
+//  13  begins
+//  13      configureElement ("div",
+//  13  ends
+    configureElement ("a",
         {   "class": classlist,
-            "id": "pr-" + data.uniqueID,
-            "innerText": data.product
+//  13              "id": "pr-" + data.uniqueID,
+//  13              "innerText": data.product
+//  13  begins
+            "href": "#",
+            "innerText": data.product,
+            "onclick": "toggleListStatus (event);",
+            "status" : status,
+            "uniqueId": data.uniqueID
+//  13  ends
         },
         parentDiv);
 
