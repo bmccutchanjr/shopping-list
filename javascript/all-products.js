@@ -210,7 +210,7 @@ function formSave (event)
     
     const objectStore = db.transaction (["all-products"], "readwrite")
                           .objectStore ("all-products");
-//  15  begins
+
     if (form["hide-uID"].value == "")
     {   //  If the value of 'hide-uID' is an empty string, we're not updating an existing item.
         //  It's new and we wat to invoke the put() methode of objectStore.
@@ -236,9 +236,7 @@ function formSave (event)
         }
     }
     else
-    {
-//  15  ends
-        const r1 = objectStore.get (Number (form["hide-uID"].value));
+    {   const r1 = objectStore.get (Number (form["hide-uID"].value));
         r1.onsuccess = event =>
         {   let data = event.target.result;
 
@@ -247,9 +245,9 @@ function formSave (event)
             data.description = form["prod-desc"].value;
             data.plan.quantity = Math.floor(form["plan-qty"].value);
             data.plan.cost = Math.floor(form["plan-price"].value * 100);
-    //  01  Do I even need this?
-    //  01          if (form["hide-uID"].value != "")
-    //  01              data.uniqueID = form["hide-uID"].value
+//  01  Do I even need this?
+//  01              if (form["hide-uID"].value != "")
+//  01                  data.uniqueID = form["hide-uID"].value
 
             const r2 = objectStore.put (data);
             r2.onsuccess = event =>
@@ -257,9 +255,7 @@ function formSave (event)
                 formActive = false;
             }
         }
-//  15  begins
     }
-//  15  ends
 }
 
 function changeProduct (uniqueID)
@@ -365,31 +361,21 @@ function makeProductDiv (section, data, even)
         section);
 
     let classlist = "field name pending";
-//  13  begins
-        status = "not needed";
-//  13  ends
+    status = "not needed";
+
     if ((data.status == "in the cart") || (data.status == "on the list"))
     {   classlist = classlist.replace ("pending", "needed");
         ++countOnList;
-//  13  begins
         status = "needed";
-//  13  ends
     }
 
-//  13  begins
-//  13      configureElement ("div",
-//  13  ends
     configureElement ("a",
         {   "class": classlist,
-//  13              "id": "pr-" + data.uniqueID,
-//  13              "innerText": data.product
-//  13  begins
             "href": "#",
             "innerText": data.product,
             "onclick": "toggleListStatus (event);",
             "status" : status,
             "uniqueId": data.uniqueID
-//  13  ends
         },
         parentDiv);
 

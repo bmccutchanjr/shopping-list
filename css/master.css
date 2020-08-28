@@ -1,5 +1,5 @@
-/*                                                                                       */
-/*  CSS that is applicable to all of the pages that make up this application             */
+/*****************************************************************************************/
+/*  CSS shared by all of the pages that make up this application                         */
 /*                                                                                       */
 
 *
@@ -28,7 +28,6 @@ body
 
 header
 {   margin: 0px;
-    /* margin-bottom: 25px; */
     margin-bottom: 10px;
     padding: 10px;
     position: relative;
@@ -65,24 +64,6 @@ menu
 .option:active
 {   color: white;
 }
-
-/* button
-{   background: var(--bg-button);
-    border: 1px solid var(--fg-button);
-    border-radius: 5px;
-    color: var(--fg-button);
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0px;
-    margin-left: 20px;
-    text-align: center;
-    width: 5vw;
-}
-
-button:hover
-{   background: var(white);
-} */
 
 /*                                          */
 /*  Style for the modal window              */
@@ -167,6 +148,7 @@ section .heading
     flex-grow: 1;
     flex-shrink: 1;
     font-weight: bold;
+    overflow: hidden;
     text-decoration: line-through;
 }
 
@@ -263,14 +245,15 @@ footer
 /*  @media queries for responsive design    */
 /*                                          */
 
-/* @media screen and (max-width: 700px)
-{   body
-    {   font-size: 2vw;
+@media screen and (max-width: 500px)
+{   .field.label
+    {   display: none;
     }
 }
 
-@media screen and (max-width: 500px)
-{   .field.quantity, .field.price
+@media screen and (max-width: 300px)
+{   .input.price,
+    .input.quantity
     {   display: none;
     }
-} */
+}

@@ -61,8 +61,7 @@ window.addEventListener ("load", event =>
         {   "class": "option",
             "display": "none",
             "innerText": "Shopping List",
-            "href": "#",
-//              "onclick": ""
+            "href": "shopping.html",
         },
         menu);
 
