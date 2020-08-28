@@ -1,11 +1,10 @@
-/*                                                                                       */
+/*****************************************************************************************/
 /*  This is only applicable to all-products.html                                         */
-/*                                                                                       */
+/*****************************************************************************************/
 
 .add-option
-{
-    background: darkgreen;
-    border: 2px solid black;
+{   background: darkgreen;
+    border: 2px solid darkgreen;
     border-radius: 50%;
     color:  white;
     display: inline-block;
@@ -15,13 +14,11 @@
 }
 
 .add-option:visited
-{
-    color: white;
+{   color: white;
 }
 
 .add-option:hover
-{
-    background: lightgreen;
+{   background: green;
 }
 
 /*  Style for the <form>                    */

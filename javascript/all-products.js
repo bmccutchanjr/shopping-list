@@ -131,6 +131,27 @@ function formAutoHide ()
 
 //  Collect the functions used to display and interact with the <form>
 
+function formAdd (event)
+{   //  Initialize the <form> to input a new product.
+
+    event.preventDefault();
+    
+    form["prod-name"].value = "";
+    form["prod-loc"].value = "";
+    form["plan-qty"].value = "";
+    form["plan-price"].value = "";
+    form["prod-desc"].value = "";
+
+    form["hide-name"].value = "";
+    form["hide-loc"].value = "";
+    form["hide-qty"].value = "";
+    form["hide-price"].value = "";
+    form["hide-desc"].value = "";
+    form["hide-uID"].value = "";
+
+    formDisplay ();
+}
+
 function formCancel (event)
 {   //  The event handler for the <form> cancel option
 
@@ -160,10 +181,7 @@ function formCancel (event)
 }
 
 function formDisplay ()
-{   
-//  03  form.style.display = "block";
-//  03  form.style.top = window.pageYOffset + 50 + "px";
-    form.style.top = window.pageYOffset + 50 + "px";
+{   form.style.top = window.pageYOffset + 50 + "px";
     form.style.display = "block";
 
     form["prod-name"].focus();
@@ -191,26 +209,57 @@ function formSave (event)
     event.preventDefault ();
     
     const objectStore = db.transaction (["all-products"], "readwrite")
-                          .objectStore ("all-products")
-    const r1 = objectStore.get (Number (form["hide-uID"].value));
-    r1.onsuccess = event =>
-    {   let data = event.target.result;
+                          .objectStore ("all-products");
+//  15  begins
+    if (form["hide-uID"].value == "")
+    {   //  If the value of 'hide-uID' is an empty string, we're not updating an existing item.
+        //  It's new and we wat to invoke the put() methode of objectStore.
 
+        let data = {};
         data.product = form["prod-name"].value;
         data.location = form["prod-loc"].value;
         data.description = form["prod-desc"].value;
+        data.plan = {};
         data.plan.quantity = Math.floor(form["plan-qty"].value);
         data.plan.cost = Math.floor(form["plan-price"].value * 100);
-//  01  Do I even need this?
-//  01          if (form["hide-uID"].value != "")
-//  01              data.uniqueID = form["hide-uID"].value
+        data.status = undefined;
+        data.priority = undefined;
 
-        const r2 = objectStore.put (data);
-        r2.onsuccess = event =>
+        const r1 = objectStore.put (data);
+        r1.onerror = event =>
+        {   alert ("AN ERROR\n\n" + event.target.result);
+        }
+
+        r1.onsuccess = event =>
         {   form.style.display = "none";
             formActive = false;
         }
     }
+    else
+    {
+//  15  ends
+        const r1 = objectStore.get (Number (form["hide-uID"].value));
+        r1.onsuccess = event =>
+        {   let data = event.target.result;
+
+            data.product = form["prod-name"].value;
+            data.location = form["prod-loc"].value;
+            data.description = form["prod-desc"].value;
+            data.plan.quantity = Math.floor(form["plan-qty"].value);
+            data.plan.cost = Math.floor(form["plan-price"].value * 100);
+    //  01  Do I even need this?
+    //  01          if (form["hide-uID"].value != "")
+    //  01              data.uniqueID = form["hide-uID"].value
+
+            const r2 = objectStore.put (data);
+            r2.onsuccess = event =>
+            {   form.style.display = "none";
+                formActive = false;
+            }
+        }
+//  15  begins
+    }
+//  15  ends
 }
 
 function changeProduct (uniqueID)
