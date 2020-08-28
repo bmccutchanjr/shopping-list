@@ -40,7 +40,13 @@ function expandMenu (event)
 
 window.addEventListener ("load", event =>
 {
-    let menu = document.getElementById ("menu");
+    let header = document.getElementById ("header");
+
+    let main = configureElement ("menu",
+        {   "id": "menu"
+        },
+        header);
+
     configureElement ("a",
         {   "class": "option",
             "display": "inline-block",
@@ -73,8 +79,8 @@ window.addEventListener ("load", event =>
     configureElement ("a",
         {   "class": "option",
             "display": "none",
-            "innerText": "Summary Stats",
             "href": "#",
+            "innerText": "Summary Stats",
             "onclick": "summaryStats ();"
         },
         menu);
