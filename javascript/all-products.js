@@ -1,7 +1,3 @@
-let countLocations = 0;
-let countProducts = 0;
-let countOnList = 0;
-
 //  There are several (perhaps hundreds of) product <div> on the page, and each has an "edit" and
 //  a "delete" option.  Although a user probably wouldn't, theoretically several (even all of them)
 //  could be clicked.
@@ -424,10 +420,38 @@ function makeProductDiv (section, data, even)
         parentDiv);
 }
 
-function buildPage (section, cursor, even)
+function buildPage (data)
 {   //  Page specific code to build the page.
 
-        makeProductDiv (section, cursor.value, even);
+    const main = document.getElementById ("main");
+
+    if (data.location != lastlocation)
+    {   lastlocation = data.location
+        locationcount = 0;
+        ++countLocations
+
+        section = configureElement ("section",
+        {   "expanded": "false",
+        },
+        main);
+
+        configureElement ("div",
+        {   "class": "heading",
+            "innerText": data.location.toUpperCase() + " ▼",
+            "onclick": "expandSection (event);"
+        },
+        section);
+    }
+
+    ++count;
+
+    makeProductDiv (section, data, ((++locationcount % 2) == 0));
+
+    const quantity = Number (data.plan.quantity);
+    const price = data.plan.quantity * data.plan.price;
+    ++countProducts;
+    totalProducts += quantity;
+    dollarsOnList += quantity * price;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

@@ -1,8 +1,34 @@
-//  These functions are used on more than one page in the application.
+//  common.js comprises several functions and variables that are used by more than one page
+//  in the application.
 
+//  Set some global variables for control and verification.
+
+let count = 0;
+let countLocations = 0;
+let countProducts = 0;
+let countOnList = 0;
+let dollarsOnList = 0;
+let locationcount = 0;
+let lastlocation = undefined;
+let section = undefined;
+let totalProducts = 0;
+
+//  I know...you're not supposed to use global variables.  You're supposed to pass everything
+//  around in parameters and return values, but the structure of this program necitates splitting
+//  the main loop across three of the modules.  'all-products' and 'shopping' build pages that are
+//  very similar, but incompatable.  Yet the code that opens the database and iterates through the
+//  database.
 //
-//  Utility functions that are used by multiple functions and processes throughout the application
+//  To keep from writing and maintaining two procedures that are substantially identical,
+//  IndexedDB.js handles the database and passes the data retrieved to functions in all-products.js
+//  and shopping.js that have the same name.  That way IndexedDB.js doesn't have to know what
+//  page it is linked to or what other scripts are linked.
 //
+//  But that means the control of the main program loop is spread across all three pages.  Global
+//  variable just make it all so much easier.
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
 function configureElement (elementType, object, parent = undefined)
 {   //  A generic function to configure HTML elements in the DOM.  There are half a dozen HTML

@@ -2,7 +2,7 @@ console.log ("IndexedDB.js");
 
 let db = undefined;     //  a reference to the database
 
-function getDbReference ()
+function getDatabase ()
 {   //  Open the database and set a global variable to reference the database object throughout
     //  the application.
 
@@ -26,16 +26,9 @@ function getDbReference ()
     request.onsuccess = event =>
     {   db = event.target.result;
 
-        const transaction = db.transaction ("all-products");
-        const objectStore = transaction.objectStore ("all-products")
-        const index = objectStore.index ("by-location-product")
-
-        let count = 0;
-        let locationcount = 0;
-        let lastlocation = undefined;
-        let section = undefined;
-
-        const main = document.getElementById ("main");
+        const index = db.transaction (["all-products"])
+                        .objectStore ("all-products")
+                        .index ("by-location-product");
 
         index.openCursor().onsuccess = (event =>
         {   let cursor = event.target.result;
@@ -43,31 +36,11 @@ function getDbReference ()
             if (!cursor)
                 summaryStats ();
             else
-            {
-                if (cursor.value.location != lastlocation)
-                {   lastlocation = cursor.value.location
-                    locationcount = 0;
-                    ++countLocations
-
-                    section = configureElement ("section",
-                        {   "expanded": "false",
-                        },
-                        main);
-
-                    configureElement ("div",
-                        {   "class": "heading",
-                            "innerText": cursor.value.location.toUpperCase() + " ▼",
-                            "onclick": "expandSection (event);"
-                        },
-                        section);
-                }
-
-                ++countProducts;
-                buildPage (section, cursor, ((++locationcount % 2) == 0));
+            {   buildPage (cursor.value);
                 cursor.continue ();
             }
         })
     }
 }
 
-getDbReference ();
+getDatabase ();

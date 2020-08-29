@@ -65,6 +65,20 @@ menu
 {   color: white;
 }
 
+.option.delete
+{   border: none;
+    color: red;
+    margin-left: 20px;
+}
+
+.option.delete:hover
+{   color: pink;
+}
+
+.option.delete:active
+{   color: white;
+}
+
 /*                                          */
 /*  Style for the modal window              */
 /*                                          */
